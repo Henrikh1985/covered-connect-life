@@ -3,7 +3,6 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import {
-  ShieldCheck,
   HeartHandshake,
   ArrowRight,
   CheckCircle2,
@@ -13,22 +12,13 @@ import {
   Home,
   Briefcase,
   ChevronRight,
-  Menu,
-  X,
   Star,
   Sparkles,
   BarChart3,
   Clock3,
   Lock,
+  Calculator,
 } from "lucide-react";
-
-const navLinks = [
-  "Calculator",
-  "Why Life Insurance",
-  "Policy Types",
-  "Learning Center",
-  "FAQ",
-] as const;
 
 const articleCards = [
   {
@@ -296,22 +286,14 @@ export default function App() {
 
   const isExpertsDomain = host.includes("lifeinsuranceexperts.org");
 
-  const brandName = isExpertsDomain
-    ? "Life Insurance Experts"
-    : "Covered Connect Life";
-
-  const brandTagline = isExpertsDomain
-    ? "Expert life insurance guidance, simplified"
-    : "Smart life insurance, connected to you";
-
   const heroHeadline = isExpertsDomain
-    ? "Life Insurance Experts Who Help You Choose With Confidence"
+    ? "Life Insurance Explained Simply: Coverage, Costs, and Smart Decisions"
     : "Covered Connect Life Insurance Guidance";
 
-  const [mobileOpen, setMobileOpen] = useState(false);
   const [selectedArticle, setSelectedArticle] =
     useState<ArticleKey>("mistakes");
   const [submitted, setSubmitted] = useState(false);
+  const [formError, setFormError] = useState("");
 
   const [calc, setCalc] = useState({
     age: 35,
@@ -354,10 +336,12 @@ export default function App() {
     e.preventDefault();
   
     if (!calc.fullName || !calc.phone || !calc.email) {
-      alert("Please fill in your name, phone, and email.");
+      setFormError("Please fill in your name, phone, and email.");
       return;
     }
-  
+
+    setFormError("");
+
     const response = await fetch("https://formspree.io/f/xgorjnlb", {
       method: "POST",
       headers: {
@@ -384,9 +368,436 @@ export default function App() {
     if (response.ok) {
       setSubmitted(true);
     } else {
-      alert("Something went wrong. Please try again.");
+      setFormError("Something went wrong. Please try again.");
+    }
   }
 
+
+  if (isExpertsDomain) {
+    return (
+      <main className="min-h-screen bg-gradient-to-b from-sky-50 via-white to-slate-100 text-slate-900">
+        <section className="relative overflow-hidden">
+          <div className="pointer-events-none absolute inset-0">
+            <div className="absolute -top-32 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-sky-200/60 blur-3xl" />
+            <div className="absolute top-40 right-0 h-80 w-80 rounded-full bg-teal-200/50 blur-3xl" />
+            <div className="absolute top-[30rem] -left-24 h-80 w-80 rounded-full bg-indigo-100/70 blur-3xl" />
+          </div>
+
+          <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 px-6 pb-16 pt-12 lg:grid-cols-[1.05fr_0.95fr] lg:pt-20">
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="order-last lg:order-first"
+            >
+              <span className="mb-5 inline-flex items-center rounded-full border border-sky-200 bg-white/80 px-4 py-2 text-sm font-medium text-sky-700 shadow-sm">
+                <Sparkles className="mr-2 h-4 w-4" />
+                Independent guidance. Clear explanations. Practical decisions.
+              </span>
+
+              <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
+                Life Insurance Explained Simply: Coverage, Costs, and Smart Decisions
+              </h1>
+
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600 sm:text-xl">
+                Learn how life insurance works, how much coverage you may need, and how different policies compare. This site is designed to help you make informed decisions before getting a quote.
+              </p>
+
+              <div className="mt-8 flex flex-wrap gap-4">
+                <a
+                  href="#calculator"
+                  className="rounded-2xl bg-slate-950 px-6 py-3 font-semibold text-white shadow-lg shadow-slate-300 hover:bg-slate-800"
+                >
+                  <span className="inline-flex items-center">
+                    Estimate Your Coverage <ArrowRight className="ml-2 h-4 w-4" />
+                  </span>
+                </a>
+
+                <a
+                  href="#learning-center"
+                  className="rounded-2xl border border-slate-200 bg-white px-6 py-3 font-semibold text-slate-800 shadow-sm hover:bg-slate-50"
+                >
+                  Read Life Insurance Guides
+                </a>
+              </div>
+
+              <div className="mt-10 grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-3">
+                {[
+                  ["Clear education", "Understand the tradeoffs before choosing coverage."],
+                  ["Smart estimates", "Estimate coverage needs using income, debt, and dependents."],
+                  ["Quote-ready", "Move from learning to action when you are ready."],
+                ].map(([title, desc]) => (
+                  <div key={title} className="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm">
+                    <div className="mb-2 flex items-center gap-2 text-slate-950">
+                      <CheckCircle2 className="h-4 w-4 text-teal-500" />
+                      <span className="font-medium">{title}</span>
+                    </div>
+                    <p className="text-sm leading-6 text-slate-600">{desc}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="order-first lg:order-last"
+              initial={{ opacity: 0, scale: 0.98, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <div id="calculator" className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-2xl shadow-slate-200">
+                <div className="mb-5 flex items-center justify-between gap-4">
+                  <span className="inline-flex rounded-full bg-teal-50 px-3 py-1 text-sm font-medium text-teal-700">
+                    Life Insurance Calculator
+                  </span>
+                  <div className="flex items-center gap-2 text-sm text-slate-500">
+                    <Lock className="h-4 w-4" /> Private estimate
+                  </div>
+                </div>
+
+                <h2 className="text-2xl font-semibold text-slate-950">Estimate your coverage</h2>
+                <p className="mt-2 text-slate-600">
+                  Get a simple starting point based on income, debt, dependents, and coverage term.
+                </p>
+
+                <form onSubmit={handleLeadSubmit} className="mt-6 space-y-5">
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div className="space-y-2">
+                      <label htmlFor="age" className="text-sm font-medium text-slate-700">Age</label>
+                      <input
+                        id="age"
+                        type="number"
+                        value={calc.age}
+                        onChange={(e) => setCalc({ ...calc, age: Number(e.target.value || 0) })}
+                        className="w-full rounded-2xl border border-slate-300 bg-white p-3 text-slate-900 outline-none focus:border-sky-400"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label htmlFor="income" className="text-sm font-medium text-slate-700">Annual income</label>
+                      <input
+                        id="income"
+                        type="number"
+                        value={calc.income}
+                        onChange={(e) => setCalc({ ...calc, income: Number(e.target.value || 0) })}
+                        className="w-full rounded-2xl border border-slate-300 bg-white p-3 text-slate-900 outline-none focus:border-sky-400"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label htmlFor="debt" className="text-sm font-medium text-slate-700">Debt / mortgage</label>
+                      <input
+                        id="debt"
+                        type="number"
+                        value={calc.debt}
+                        onChange={(e) => setCalc({ ...calc, debt: Number(e.target.value || 0) })}
+                        className="w-full rounded-2xl border border-slate-300 bg-white p-3 text-slate-900 outline-none focus:border-sky-400"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label htmlFor="kids" className="text-sm font-medium text-slate-700">Children / dependents</label>
+                      <input
+                        id="kids"
+                        type="number"
+                        value={calc.kids}
+                        onChange={(e) => setCalc({ ...calc, kids: Number(e.target.value || 0) })}
+                        className="w-full rounded-2xl border border-slate-300 bg-white p-3 text-slate-900 outline-none focus:border-sky-400"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div className="space-y-2">
+                      <label htmlFor="years" className="text-sm font-medium text-slate-700">Years of income replacement</label>
+                      <input
+                        id="years"
+                        type="number"
+                        min={5}
+                        max={20}
+                        value={calc.years}
+                        onChange={(e) => setCalc({ ...calc, years: Number(e.target.value || 0) })}
+                        className="w-full rounded-2xl border border-slate-300 bg-white p-3 text-slate-900 outline-none focus:border-sky-400"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <label htmlFor="term" className="text-sm font-medium text-slate-700">Term</label>
+                      <select
+                        id="term"
+                        value={calc.term}
+                        onChange={(e) => setCalc({ ...calc, term: Number(e.target.value) })}
+                        className="w-full rounded-2xl border border-slate-300 bg-white p-3 text-slate-900 outline-none focus:border-sky-400"
+                      >
+                        <option value={10}>10-year term</option>
+                        <option value={20}>20-year term</option>
+                        <option value={30}>30-year term</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                    <div>
+                      <div className="text-sm text-slate-500">Smoking status</div>
+                      <div className="font-medium text-slate-950">{calc.smoker ? "Smoker" : "Non-smoker"}</div>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setCalc({ ...calc, smoker: !calc.smoker })}
+                      className="rounded-2xl border border-slate-300 bg-white px-4 py-2 text-slate-800 hover:bg-slate-50"
+                    >
+                      Switch
+                    </button>
+                  </div>
+
+                  <div className="rounded-[1.75rem] border border-sky-100 bg-gradient-to-br from-sky-50 to-teal-50 p-5">
+                    <div className="grid gap-5 sm:grid-cols-2">
+                      <div>
+                        <div className="text-sm text-slate-500">Suggested coverage</div>
+                        <div className="mt-2 text-3xl font-semibold text-slate-950">
+                          ${suggestedCoverage.toLocaleString()}
+                        </div>
+                        <div className="mt-2 text-sm leading-6 text-slate-600">
+                          Based on income replacement, debt, and dependent support.
+                        </div>
+                      </div>
+
+                      <div>
+                        <div className="text-sm text-slate-500">Estimated monthly range</div>
+                        <div className="mt-2 text-3xl font-semibold text-slate-950">
+                          ${monthlyEstimate}/mo
+                        </div>
+                        <div className="mt-2 text-sm leading-6 text-slate-600">
+                          A first-pass estimate for planning and comparison.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="mt-5">
+                      <div className="mb-2 flex items-center justify-between text-sm text-slate-600">
+                        <span>Fit confidence</span>
+                        <span>{confidenceScore}%</span>
+                      </div>
+                      <div className="h-2 w-full rounded bg-slate-200">
+                        <div className="h-2 rounded bg-teal-500" style={{ width: `${confidenceScore}%` }} />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <input
+                      aria-label="Full name"
+                      value={calc.fullName}
+                      onChange={(e) => setCalc({ ...calc, fullName: e.target.value })}
+                      className="w-full rounded-2xl border border-slate-300 bg-white p-3 text-slate-900 outline-none focus:border-sky-400"
+                      placeholder="Full name"
+                    />
+                    <input
+                      aria-label="Phone"
+                      value={calc.phone}
+                      onChange={(e) => setCalc({ ...calc, phone: e.target.value })}
+                      className="w-full rounded-2xl border border-slate-300 bg-white p-3 text-slate-900 outline-none focus:border-sky-400"
+                      placeholder="Phone"
+                    />
+                    <input
+                      aria-label="Email"
+                      type="email"
+                      value={calc.email}
+                      onChange={(e) => setCalc({ ...calc, email: e.target.value })}
+                      className="w-full rounded-2xl border border-slate-300 bg-white p-3 text-slate-900 outline-none focus:border-sky-400"
+                      placeholder="Email"
+                    />
+                    <input
+                      aria-label="ZIP code"
+                      value={calc.zip}
+                      onChange={(e) => setCalc({ ...calc, zip: e.target.value })}
+                      className="w-full rounded-2xl border border-slate-300 bg-white p-3 text-slate-900 outline-none focus:border-sky-400"
+                      placeholder="ZIP code"
+                    />
+                  </div>
+
+                  {formError && (
+                    <div className="rounded-2xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">
+                      {formError}
+                    </div>
+                  )}
+
+                  <button
+                    type="submit"
+                    className="w-full rounded-2xl bg-slate-950 px-5 py-3 font-semibold text-white hover:bg-slate-800"
+                  >
+                    Get My Personalized Quote
+                  </button>
+
+                  {submitted && (
+                    <div className="rounded-2xl border border-teal-200 bg-teal-50 p-4 text-sm text-teal-700">
+                      Thanks — we received your request and will be in touch shortly.
+                    </div>
+                  )}
+                </form>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        <section id="why-life-insurance" className="mx-auto max-w-7xl px-6 py-14">
+          <div className="mb-8 max-w-2xl">
+            <span className="mb-4 inline-flex rounded-full border border-slate-200 bg-white px-3 py-1 text-sm text-slate-600 shadow-sm">
+              Why life insurance matters
+            </span>
+            <h2 className="text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
+              Practical guidance for families, homeowners, and business owners.
+            </h2>
+            <p className="mt-4 leading-7 text-slate-600">
+              Life insurance can support income replacement, mortgage protection, child-related expenses, final costs, and long-term stability for the people who depend on you.
+            </p>
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {[
+              { icon: HeartHandshake, title: "Protect loved ones", text: "Plan for people who depend on your income and support." },
+              { icon: BadgeDollarSign, title: "Cover financial gaps", text: "Think through debts, mortgage obligations, and recurring costs." },
+              { icon: Baby, title: "Support dependents", text: "Estimate needs for children, childcare, and education planning." },
+              { icon: Home, title: "Protect the home", text: "Coverage can help preserve housing stability after a loss." },
+            ].map((item) => (
+              <div key={item.title} className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-50">
+                  <item.icon className="h-6 w-6 text-sky-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-slate-950">{item.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="policy-types" className="mx-auto max-w-7xl px-6 py-14">
+          <div className="mb-8 max-w-3xl">
+            <span className="mb-4 inline-flex rounded-full border border-slate-200 bg-white px-3 py-1 text-sm text-slate-600 shadow-sm">
+              Policy education
+            </span>
+            <h2 className="text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
+              Compare common life insurance options.
+            </h2>
+            <p className="mt-4 leading-7 text-slate-600">
+              Learn the difference between term life, whole life, and more flexible permanent coverage structures before choosing a direction.
+            </p>
+          </div>
+
+          <div className="grid gap-5 lg:grid-cols-3">
+            {[
+              { title: "Term Life", badge: "Popular", text: "Often used for affordable income replacement and family protection during key working years.", bullets: ["Lower entry cost", "Set coverage period", "Good for mortgages and young families"] },
+              { title: "Whole Life", badge: "Permanent", text: "Designed for lifetime coverage and long-term financial planning needs.", bullets: ["Lifetime orientation", "Predictable structure", "May fit legacy goals"] },
+              { title: "Universal Life", badge: "Flexible", text: "A more adjustable permanent policy structure that requires careful review.", bullets: ["Flexible structure", "Long-term orientation", "Needs careful comparison"] },
+            ].map((item) => (
+              <div key={item.title} className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
+                <div className="mb-4 flex items-center justify-between">
+                  <span className="rounded-full bg-sky-50 px-3 py-1 text-sm text-sky-700">{item.badge}</span>
+                  <BarChart3 className="h-5 w-5 text-slate-400" />
+                </div>
+                <h3 className="text-xl font-semibold text-slate-950">{item.title}</h3>
+                <p className="mt-2 text-slate-600">{item.text}</p>
+                <div className="mt-4 space-y-3">
+                  {item.bullets.map((bullet) => (
+                    <div key={bullet} className="flex items-start gap-3 text-sm text-slate-700">
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 text-teal-500" />
+                      <span>{bullet}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="learning-center" className="mx-auto max-w-7xl px-6 py-14">
+          <div className="mb-8 max-w-3xl">
+            <span className="mb-4 inline-flex rounded-full border border-slate-200 bg-white px-3 py-1 text-sm text-slate-600 shadow-sm">
+              Learning Center
+            </span>
+            <h2 className="text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
+              Simple guides that help visitors become quote-ready.
+            </h2>
+            <p className="mt-4 leading-7 text-slate-600">
+              These guides create trust, educate visitors, and support search visibility for life insurance topics.
+            </p>
+          </div>
+
+          <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
+            <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
+              <h3 className="flex items-center gap-2 text-xl font-semibold text-slate-950">
+                <BookOpen className="h-5 w-5 text-sky-600" /> Featured guides
+              </h3>
+              <p className="mt-2 text-slate-600">Explore core topics before requesting a quote.</p>
+
+              <div className="mt-4 space-y-3">
+                {articleCards.map((post) => (
+                  <button
+                    key={post.id}
+                    onClick={() => setSelectedArticle(post.id)}
+                    className={`w-full rounded-2xl border p-4 text-left transition ${
+                      selectedArticle === post.id
+                        ? "border-sky-200 bg-sky-50"
+                        : "border-slate-200 bg-white hover:bg-slate-50"
+                    }`}
+                  >
+                    <div className="mb-2 flex items-center justify-between gap-3">
+                      <span className="rounded-full bg-slate-100 px-3 py-1 text-xs text-slate-600">{post.category}</span>
+                      <ArrowRight className="h-4 w-4 text-slate-400" />
+                    </div>
+                    <h3 className="flex items-center gap-2 text-base font-semibold text-slate-950">
+                      {post.id === "how-much" && (
+                        <Calculator className="h-5 w-5 text-sky-600" />
+                      )}
+                      {post.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">{post.excerpt}</p>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
+              <h3 className="text-2xl font-semibold text-slate-950">{article.title}</h3>
+              <p className="mt-2 text-slate-600">{article.intro}</p>
+
+              <div className="mt-5 space-y-4">
+                {article.points.map(([heading, body]) => (
+                  <div key={heading} className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                    <h4 className="font-semibold text-slate-950">{heading}</h4>
+                    <p className="mt-2 text-sm leading-7 text-slate-600">{body}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="faq" className="mx-auto max-w-5xl px-6 py-14">
+          <div className="mb-8 text-center">
+            <span className="mb-4 inline-flex rounded-full border border-slate-200 bg-white px-3 py-1 text-sm text-slate-600 shadow-sm">FAQ</span>
+            <h2 className="text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
+              Questions people ask before they trust a quote.
+            </h2>
+          </div>
+
+          <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+            <div className="space-y-4">
+              {[
+                ["How accurate is the calculator?", "It is a first-pass estimate for planning, not a final underwriting decision."],
+                ["Can I compare policy types here?", "Yes. The site explains common differences and helps visitors move toward the right next step."],
+                ["Is term life usually cheaper than whole life?", "Usually, term life has lower starting premiums because it covers a set period of time."],
+                ["Can I request a quote?", "Yes. The calculator form can be used to capture quote requests and contact details."],
+              ].map(([q, a]) => (
+                <details key={q} className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                  <summary className="cursor-pointer list-none text-left font-semibold text-slate-950">{q}</summary>
+                  <p className="mt-3 text-slate-600">{a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
+    );
   }
 
   return (
@@ -398,75 +809,11 @@ export default function App() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_35%)]" />
       </div>
 
-      <header className="sticky top-0 z-40 border-b border-white/10 bg-slate-950/75 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-400 to-emerald-400 text-slate-950 shadow-lg shadow-cyan-500/20">
-              <ShieldCheck className="h-6 w-6" />
-            </div>
-            <div>
-              <div className="text-lg font-semibold tracking-tight">
-                Covered Connect Life
-              </div>
-              <div className="text-xs text-slate-400">
-                Smart life insurance, connected to you
-              </div>
-            </div>
-          </div>
-
-          <nav className="hidden items-center gap-7 md:flex">
-            {navLinks.map((link) => (
-              <a
-                key={link}
-                href={`#${link.toLowerCase().replace(/\s+/g, "-")}`}
-                className="text-sm text-slate-300 transition hover:text-white"
-              >
-                {link}
-              </a>
-            ))}
-          </nav>
-
-          <div className="hidden md:block">
-            <button className="rounded-2xl bg-white px-4 py-2 text-slate-950 hover:bg-slate-100">
-              Get My Estimate
-            </button>
-          </div>
-
-          <button
-            className="md:hidden"
-            onClick={() => setMobileOpen((v) => !v)}
-            aria-label="Toggle menu"
-          >
-            {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
-        </div>
-
-        {mobileOpen && (
-          <div className="border-t border-white/10 px-6 py-4 md:hidden">
-            <div className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link}
-                  href={`#${link.toLowerCase().replace(/\s+/g, "-")}`}
-                  className="text-sm text-slate-300"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {link}
-                </a>
-              ))}
-              <button className="rounded-2xl bg-white px-4 py-2 text-slate-950 hover:bg-slate-100">
-                Get My Estimate
-              </button>
-            </div>
-          </div>
-        )}
-      </header>
-
       <main className="relative z-10">
         <section className="mx-auto grid max-w-7xl items-center gap-10 px-6 pb-16 pt-12 lg:grid-cols-[1.15fr_0.85fr] lg:pt-20">
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
+          <div className="order-last lg:order-first">
+          <motion.div
+  initial={{ opacity: 0, scale: 0.98, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
@@ -525,6 +872,7 @@ export default function App() {
           </div>
 
           <motion.div
+            className="order-first lg:order-last"
             initial={{ opacity: 0, scale: 0.98, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -769,6 +1117,12 @@ export default function App() {
                       </div>
                     </div>
 
+                    {formError && (
+                      <div className="mt-4 rounded-2xl border border-red-400/20 bg-red-400/10 p-4 text-sm text-red-300">
+                        {formError}
+                      </div>
+                    )}
+
                     <div className="mt-5 flex flex-wrap gap-3">
                       <button
                         type="submit"
@@ -777,18 +1131,17 @@ export default function App() {
                         Get My Personalized Quote
                       </button>
 
-                      <button
-                        type="button"
+                      <a
+                        href="#calculator"
                         className="rounded-2xl border border-white/20 bg-transparent px-4 py-2 text-white hover:bg-white/10"
                       >
                         Talk to an advisor
-                      </button>
+                      </a>
                     </div>
 
                     {submitted && (
                       <div className="mt-4 rounded-2xl border border-emerald-400/20 bg-emerald-400/10 p-4 text-sm text-emerald-200">
-                        Thanks — your estimate request was captured. Next step:
-                        connect this form to email, Google Sheets, or a CRM.
+                        Thanks — we received your request and will be in touch shortly.
                       </div>
                     )}
                   </div>
@@ -978,7 +1331,10 @@ export default function App() {
                         <Pill>{post.category}</Pill>
                         <ArrowRight className="h-4 w-4 text-slate-400" />
                       </div>
-                      <h3 className="text-base font-semibold text-white">
+                      <h3 className="flex items-center gap-2 text-base font-semibold text-white">
+                        {post.id === "how-much" && (
+                          <Calculator className="h-5 w-5 text-cyan-300" />
+                        )}
                         {post.title}
                       </h3>
                       <p className="mt-2 text-sm leading-6 text-slate-300">
@@ -1007,14 +1363,12 @@ export default function App() {
                   </div>
                 ))}
 
-                <div className="flex flex-wrap gap-3 pt-2">
-                  <button className="rounded-2xl bg-white px-4 py-2 text-slate-950 hover:bg-slate-100">
-                    Turn this into a landing page
-                  </button>
-                  <button className="rounded-2xl border border-white/15 bg-transparent px-4 py-2 text-white hover:bg-white/10">
-                    Open article layout
-                  </button>
-                </div>
+                <a
+                  href="#calculator"
+                  className="inline-flex items-center rounded-2xl bg-white px-4 py-2 text-slate-950 hover:bg-slate-100"
+                >
+                  Get a quote <ArrowRight className="ml-2 h-4 w-4" />
+                </a>
               </div>
             </Card>
           </div>
@@ -1095,33 +1449,7 @@ export default function App() {
             </div>
           </Card>
         </section>
-
-        <section className="mx-auto max-w-7xl px-6 pb-20 pt-8">
-          <Card className="overflow-hidden bg-gradient-to-r from-cyan-400/15 via-white/5 to-emerald-400/15">
-            <div className="grid items-center gap-8 p-8 sm:p-10 lg:grid-cols-[1fr_auto] lg:p-12">
-              <div>
-                <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                  Ready to turn this into your real brand site?
-                </h2>
-                <p className="mt-4 max-w-2xl leading-7 text-slate-200">
-                  This concept is ready to evolve into a full production website
-                  with custom branding, quote flow, educational article templates,
-                  lead capture, and SEO-ready page architecture.
-                </p>
-              </div>
-
-              <div className="flex flex-wrap gap-3">
-                <button className="rounded-2xl bg-white px-6 py-3 text-slate-950 hover:bg-slate-100">
-                  Build full site structure
-                </button>
-                <button className="rounded-2xl border border-white/20 bg-transparent px-6 py-3 text-white hover:bg-white/10">
-                  Customize branding
-                </button>
-              </div>
-            </div>
-          </Card>
-        </section>
-      </main>
+</main>
     </div>
   );
 }
