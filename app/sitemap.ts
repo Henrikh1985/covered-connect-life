@@ -29,6 +29,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
     },
     {
+      url: `${baseUrl}/life-insurance-for-people-over-40`,
+      lastModified: new Date(),
+    },
+    {
       url: `${baseUrl}/faq`,
       lastModified: new Date(),
     },
