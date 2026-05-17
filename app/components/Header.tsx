@@ -10,6 +10,7 @@ const navLinks = [
   { label: "Calculator", href: "/#calculator" },
   { label: "Why Life Insurance", href: "/#why-life-insurance" },
   { label: "Policy Types", href: "/#policy-types" },
+  { label: "Life Insurance Over 40", href: "/life-insurance-for-people-over-40" },
   { label: "Learning Center", href: "/learning-center" },
   { label: "FAQ", href: "/faq" },
 ];
