@@ -1,4 +1,5 @@
 import { ShieldCheck, Clock, DollarSign, AlertTriangle, CheckCircle } from "lucide-react";
+import Link from "next/link";
 import PageLayout from "../components/PageLayout";
 
 export const metadata = {
@@ -91,13 +92,49 @@ const mistakes = [
   },
 ];
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.a,
+    },
+  })),
+};
+
 export default function LifeInsuranceOver40() {
   return (
     <PageLayout
       title="Life Insurance for People Over 40"
       subtitle="Your 40s and 50s are when life insurance matters most — and when most people finally get serious about it."
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
       <div className="grid gap-8">
+
+        {/* Intro */}
+        <div className="rounded-2xl p-8 border border-white/10 bg-white/5">
+          <p className="text-slate-300 leading-7 mb-4">
+            Finding the right <strong className="text-white">life insurance for people over 40</strong> doesn&apos;t have to be complicated. Whether you&apos;re 42 with a young family or 55 planning for retirement, this guide covers your real options — rates, policy types, and what to watch out for.
+          </p>
+          <p className="text-slate-300 leading-7">
+            Not sure how much coverage you need? Start with our{" "}
+            <Link href="/#calculator" className="text-cyan-400 hover:text-cyan-300 underline">
+              free coverage calculator
+            </Link>{" "}
+            or{" "}
+            <Link href="/get-a-quote" className="text-cyan-400 hover:text-cyan-300 underline">
+              get a personalized quote
+            </Link>{" "}
+            in minutes.
+          </p>
+        </div>
 
         {/* Why 40s matter */}
         <div className="rounded-2xl p-8 border border-white/10 bg-white/5">
@@ -143,7 +180,16 @@ export default function LifeInsuranceOver40() {
             </table>
           </div>
           <p className="text-xs text-slate-500 mt-3">
-            Estimates for illustrative purposes. Actual rates depend on health, insurer, and coverage term.
+            Estimates for illustrative purposes. Actual rates depend on health, insurer, and coverage term. See{" "}
+            <a
+              href="https://www.naic.org/consumer_home.htm"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cyan-400 hover:text-cyan-300 underline"
+            >
+              NAIC
+            </a>{" "}
+            for official insurer data.
           </p>
         </div>
 
@@ -154,7 +200,10 @@ export default function LifeInsuranceOver40() {
             Which Policy Type Makes Sense After 40?
           </h2>
           <p className="text-slate-400 text-sm mb-6">
-            There&apos;s no single right answer — it depends on why you need coverage and for how long.
+            There&apos;s no single right answer — it depends on why you need coverage and for how long. Learn more about{" "}
+            <Link href="/term-vs-whole-life-insurance" className="text-cyan-400 hover:text-cyan-300 underline">
+              term vs. whole life insurance
+            </Link>.
           </p>
           <div className="grid gap-4">
             {policyOptions.map((opt) => (
@@ -206,14 +255,17 @@ export default function LifeInsuranceOver40() {
         <div className="rounded-2xl p-8 border border-cyan-500/20 bg-cyan-500/5 text-center">
           <h2 className="text-xl font-semibold mb-3">Ready to Find the Right Coverage?</h2>
           <p className="text-slate-300 mb-6 max-w-lg mx-auto">
-            Use our quote tool to compare rates and find coverage that fits your life and budget.
+            Use our quote tool to compare rates and find coverage that fits your life and budget. Also see our guide on{" "}
+            <Link href="/how-much-life-insurance-do-i-need" className="text-cyan-400 hover:text-cyan-300 underline">
+              how much life insurance you need
+            </Link>.
           </p>
-          <a
+          <Link
             href="/get-a-quote"
             className="inline-block bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold px-8 py-3 rounded-full transition-colors"
           >
             Get a Free Quote
-          </a>
+          </Link>
         </div>
 
       </div>
