@@ -2,9 +2,13 @@ import "./globals.css";
 import Header from "./components/Header";
 
 export const metadata = {
+  metadataBase: new URL("https://www.coveredconnect.com"),
   title: "Covered Connect Life Insurance | Smart Coverage Guidance",
   description:
     "Compare life insurance options, estimate coverage, and find the best policy for your needs.",
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function RootLayout({
