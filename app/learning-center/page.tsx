@@ -1,6 +1,13 @@
 import Link from "next/link";
 import PageLayout from "../components/PageLayout";
 
+export const metadata = {
+  title: "Life Insurance Learning Center | Guides & Education | Covered Connect",
+  description:
+    "Explore simple, clear guides about term life, whole life, coverage amounts, and how to choose the right life insurance policy for your situation.",
+  alternates: { canonical: "/learning-center" },
+};
+
 export default function LearningCenterPage() {
   return (
     <PageLayout

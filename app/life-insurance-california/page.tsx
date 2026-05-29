@@ -1,6 +1,13 @@
 import Link from "next/link";
 import PageLayout from "../components/PageLayout";
 
+export const metadata = {
+  title: "Life Insurance in California | Coverage Options | Covered Connect",
+  description:
+    "Find life insurance options for California residents. Compare term life, whole life, and no-exam policies based on your income, family size, and coverage goals.",
+  alternates: { canonical: "/life-insurance-california" },
+};
+
 export default function CaliforniaLifeInsurancePage() {
   return (
     <PageLayout

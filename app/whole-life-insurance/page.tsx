@@ -1,6 +1,13 @@
 import Link from "next/link";
 import PageLayout from "../components/PageLayout";
 
+export const metadata = {
+  title: "Whole Life Insurance | Permanent Coverage Guide | Covered Connect",
+  description:
+    "Understand whole life insurance — permanent coverage, lifetime protection, and long-term planning benefits. Compare options and find the right policy.",
+  alternates: { canonical: "/whole-life-insurance" },
+};
+
 export default function WholeLifeInsurancePage() {
   return (
     <PageLayout

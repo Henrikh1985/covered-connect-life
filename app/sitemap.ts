@@ -36,5 +36,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/faq`,
       lastModified: new Date(),
     },
+    {
+      url: `${baseUrl}/whole-life-insurance`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/life-insurance-california`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/learning-center`,
+      lastModified: new Date(),
+    },
   ];
 }

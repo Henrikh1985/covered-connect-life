@@ -1,6 +1,13 @@
 import Link from "next/link";
 import PageLayout from "../components/PageLayout";
 
+export const metadata = {
+  title: "Term Life Insurance Guide | Costs & Coverage | Covered Connect",
+  description:
+    "Learn how term life insurance works, who it is best for, and how it compares to whole life. Get a quote and find affordable coverage for your family.",
+  alternates: { canonical: "/term-life-insurance" },
+};
+
 export default function TermLifeInsurancePage() {
   return (
     <PageLayout

@@ -1,6 +1,13 @@
 import Link from "next/link";
 import PageLayout from "../components/PageLayout";
 
+export const metadata = {
+  title: "Get a Free Life Insurance Quote | Compare Options | Covered Connect",
+  description:
+    "Compare life insurance quotes for term life, whole life, and more. Answer a few questions and get a personalized coverage estimate for your family.",
+  alternates: { canonical: "/get-a-quote" },
+};
+
 export default function GetAQuotePage() {
   return (
     <PageLayout

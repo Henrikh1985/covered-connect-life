@@ -1,6 +1,13 @@
 import Link from "next/link";
 import PageLayout from "../components/PageLayout";
 
+export const metadata = {
+  title: "Life Insurance FAQ | Common Questions Answered | Covered Connect",
+  description:
+    "Get answers to common life insurance questions about policy types, coverage amounts, term vs whole life, and how to choose the right plan for your family.",
+  alternates: { canonical: "/faq" },
+};
+
 export default function FAQPage() {
   return (
     <PageLayout

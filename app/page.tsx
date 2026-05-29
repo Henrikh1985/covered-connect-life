@@ -819,7 +819,7 @@ export default function App() {
             >
               <Pill className="mb-5 border-cyan-400/30 bg-cyan-400/10 text-cyan-200">
                 <Sparkles className="mr-2 h-4 w-4" />
-                Beautifully designed. Built to convert with trust.
+                Independent guidance. No pressure, no jargon.
               </Pill>
 
               <h1 className="max-w-4xl text-5xl font-semibold tracking-tight text-white sm:text-6xl lg:text-7xl">
@@ -827,10 +827,9 @@ export default function App() {
               </h1>
 
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">
-                A modern life insurance website concept with an elegant quote
-                calculator, strong educational content, and a brand presence
-                designed to make visitors feel protected, informed, and ready to
-                act.
+                Compare life insurance options, estimate your coverage needs,
+                and find the right policy for your family. Straightforward
+                guidance so you can make a confident decision.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-4">
@@ -853,9 +852,9 @@ export default function App() {
 
               <div className="mt-10 grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-3">
                 {[
-                  ["Fast estimate", "See a smart monthly range in under a minute."],
-                  ["Education-first", "Rich guides that build trust before the quote."],
-                  ["Premium design", "A polished visual identity that feels high-value."],
+                  ["Fast estimate", "See a monthly range estimate in under a minute."],
+                  ["Education-first", "Clear guides help you understand before you decide."],
+                  ["No pressure", "Learn, compare, and request a quote on your own terms."],
                 ].map(([title, desc]) => (
                   <Card key={title} className="shadow-2xl shadow-black/20">
                     <div className="p-5">
@@ -1153,15 +1152,13 @@ export default function App() {
 
         <section id="why-life-insurance" className="mx-auto max-w-7xl px-6 py-10">
           <div className="mb-8 max-w-2xl">
-            <Pill className="mb-4">Why it resonates</Pill>
+            <Pill className="mb-4">Who it is for</Pill>
             <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-              Built to create reassurance, seriousness, and desire.
+              Designed for families who want real answers.
             </h2>
             <p className="mt-4 leading-7 text-slate-300">
-              This concept does not look like a cheap quote page. It feels like a
-              high-trust financial brand. The design language is cinematic, clean,
-              and intentional so visitors associate the company with safety,
-              intelligence, and modernity.
+              Life insurance decisions are important. Covered Connect gives you the education,
+              tools, and guidance to make a confident choice — without pressure or jargon.
             </p>
           </div>
 
@@ -1170,22 +1167,22 @@ export default function App() {
               {
                 icon: HeartHandshake,
                 title: "Protect people you love",
-                text: "Position the policy as emotional stability, not just a product.",
+                text: "Plan coverage around the people who depend on your income and stability.",
               },
               {
                 icon: BadgeDollarSign,
                 title: "Preserve financial order",
-                text: "Show how coverage helps keep debts, lifestyle, and plans intact.",
+                text: "Coverage can help keep debts, mortgage obligations, and future plans intact.",
               },
               {
                 icon: Baby,
                 title: "Support children and dependents",
-                text: "Make the impact concrete by addressing family continuity.",
+                text: "Think through childcare, education, and the long-term stability of the people who count on you.",
               },
               {
                 icon: Home,
                 title: "Keep the home secure",
-                text: "Tie coverage to the most powerful household symbol: the home.",
+                text: "Mortgage protection is one of the most common reasons families choose life insurance.",
               },
             ].map((item) => (
               <Card key={item.title}>
@@ -1208,13 +1205,12 @@ export default function App() {
             <div className="max-w-2xl">
               <Pill className="mb-4">Policy education</Pill>
               <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                Make policy types understandable and visually elegant.
+                Understand your coverage options before you decide.
               </h2>
             </div>
             <p className="max-w-xl leading-7 text-slate-300">
-              People trust websites that simplify complexity without making them
-              feel talked down to. This section should look editorial, premium, and
-              structured.
+              Understanding the difference between term and permanent coverage helps you
+              make a smarter decision for your family and budget.
             </p>
           </div>
 
@@ -1295,12 +1291,11 @@ export default function App() {
           <div className="mb-8 max-w-3xl">
             <Pill className="mb-4">Learning Center</Pill>
             <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-              Educational content that builds authority and search visibility.
+              Simple guides that help you become coverage-ready.
             </h2>
             <p className="mt-4 leading-7 text-slate-300">
-              This is where the brand starts behaving like a serious publisher.
-              The visual quality should remain luxurious, while the writing stays
-              practical, calm, and grounded.
+              Each guide is designed to answer a real question and move you one step
+              closer to the right coverage decision.
             </p>
           </div>
 
@@ -1312,8 +1307,7 @@ export default function App() {
                   Featured guides
                 </h3>
                 <p className="mt-2 text-slate-300">
-                  A library of articles designed for SEO, trust, and conversion
-                  support.
+                  Explore core topics before requesting a quote.
                 </p>
 
                 <div className="mt-4 space-y-3">
@@ -1379,18 +1373,18 @@ export default function App() {
             {[
               {
                 icon: Clock3,
-                title: "Fast-path journey",
-                text: "A buyer should feel they can learn, estimate, and move forward without getting lost.",
+                title: "Learn, estimate, decide",
+                text: "Start learning, estimate your coverage, and request a quote — all in one visit.",
               },
               {
                 icon: Star,
-                title: "Premium perception",
-                text: "The site should feel like a serious brand, not a disposable lead form with insurance language on top.",
+                title: "Trusted guidance",
+                text: "We explain policy types, costs, and tradeoffs honestly so you can choose with confidence.",
               },
               {
                 icon: Briefcase,
-                title: "Lead quality uplift",
-                text: "Clear education and beautiful UX can improve trust and increase the quality of inquiries generated.",
+                title: "Family-focused planning",
+                text: "Whether you are protecting a mortgage, income, or your children's future, we help you think it through.",
               },
             ].map((item) => (
               <Card key={item.title}>
