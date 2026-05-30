@@ -1,5 +1,6 @@
 import "./globals.css";
 import Header from "./components/Header";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata = {
   metadataBase: new URL("https://www.coveredconnect.com"),
@@ -21,6 +22,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-slate-950 text-slate-100">
         <Header />
         {children}
+        <Analytics />
       </body>
     </html>
   );
