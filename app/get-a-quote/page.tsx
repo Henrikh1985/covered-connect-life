@@ -72,7 +72,7 @@ export default function GetAQuotePage() {
           </p>
 
           <Link
-            href="/contact"
+            href="/#calculator"
             className="mt-6 inline-block rounded-2xl bg-white px-6 py-3 font-semibold text-slate-950 hover:bg-slate-100"
           >
             Get My Quote

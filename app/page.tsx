@@ -1443,6 +1443,40 @@ export default function App() {
             </div>
           </Card>
         </section>
+
+        <section className="mx-auto max-w-7xl px-6 py-14">
+          <div className="mb-8 text-center">
+            <Pill className="mb-4">Browse Our Guides</Pill>
+            <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+              Explore coverage types, guides, and tools.
+            </h2>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { title: "Term Life Insurance", desc: "Affordable coverage for a set period of time.", href: "/term-life-insurance" },
+              { title: "Whole Life Insurance", desc: "Permanent coverage with cash value growth.", href: "/whole-life-insurance" },
+              { title: "Term vs Whole Life", desc: "Compare the two most popular policy types.", href: "/term-vs-whole-life-insurance" },
+              { title: "How Much Do I Need?", desc: "Calculate coverage based on your situation.", href: "/how-much-life-insurance-do-i-need" },
+              { title: "Life Insurance Over 40", desc: "Rates, options, and tips for adults over 40.", href: "/life-insurance-for-people-over-40" },
+              { title: "Best for 40-Year-Olds", desc: "Top policy options for your 40s.", href: "/best-life-insurance-for-40-year-olds" },
+              { title: "Life Insurance California", desc: "Coverage guidance for California residents.", href: "/life-insurance-california" },
+              { title: "Learning Center", desc: "Guides and education on all things life insurance.", href: "/learning-center" },
+              { title: "FAQ", desc: "Common questions answered clearly.", href: "/faq" },
+            ].map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="rounded-2xl border border-white/10 bg-white/5 p-5 transition hover:bg-white/10"
+              >
+                <h3 className="font-semibold text-white">{item.title}</h3>
+                <p className="mt-1 text-sm text-slate-300">{item.desc}</p>
+                <span className="mt-3 inline-flex items-center text-sm text-cyan-300">
+                  Read more <ChevronRight className="ml-1 h-4 w-4" />
+                </span>
+              </a>
+            ))}
+          </div>
+        </section>
 </main>
     </div>
   );

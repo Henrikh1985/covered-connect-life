@@ -258,7 +258,10 @@ export default function LifeInsuranceOver40() {
             Use our quote tool to compare rates and find coverage that fits your life and budget. Also see our guide on{" "}
             <Link href="/how-much-life-insurance-do-i-need" className="text-cyan-400 hover:text-cyan-300 underline">
               how much life insurance you need
-            </Link>.
+            </Link>. Looking for options specifically for your 40s? See our{" "}
+            <Link href="/best-life-insurance-for-40-year-olds" className="text-cyan-400 hover:text-cyan-300 underline">
+              best life insurance for 40-year-olds
+            </Link>{" "}guide.
           </p>
           <Link
             href="/get-a-quote"

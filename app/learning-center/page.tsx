@@ -19,12 +19,22 @@ export default function LearningCenterPage() {
           {
             title: "Term vs Whole Life Insurance",
             text: "Understand the difference between temporary and permanent coverage.",
-            href: "/term-life-insurance",
+            href: "/term-vs-whole-life-insurance",
           },
           {
             title: "How Much Life Insurance Do I Need?",
             text: "Learn how income, debt, dependents, and future goals affect coverage.",
-            href: "/get-a-quote",
+            href: "/how-much-life-insurance-do-i-need",
+          },
+          {
+            title: "Term Life Insurance",
+            text: "Explore affordable term coverage options for your family.",
+            href: "/term-life-insurance",
+          },
+          {
+            title: "Whole Life Insurance",
+            text: "Learn when permanent coverage may make sense for long-term planning.",
+            href: "/whole-life-insurance",
           },
           {
             title: "Life Insurance in California",
@@ -32,9 +42,14 @@ export default function LearningCenterPage() {
             href: "/life-insurance-california",
           },
           {
-            title: "Whole Life Insurance",
-            text: "Learn when permanent coverage may make sense for long-term planning.",
-            href: "/whole-life-insurance",
+            title: "Best Life Insurance for 40-Year-Olds",
+            text: "Find the right policy options if you're in your 40s.",
+            href: "/best-life-insurance-for-40-year-olds",
+          },
+          {
+            title: "Life Insurance for People Over 40",
+            text: "Coverage guidance for adults over 40 with families and financial goals.",
+            href: "/life-insurance-for-people-over-40",
           },
         ].map((item) => (
           <Link
